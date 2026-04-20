@@ -83,7 +83,7 @@ label.inset(8, 12, 8, 12);
 ## 运行示例工程
 
 ```bash
-git clone https://github.com/fanpeng/ZLInsetLabel.git
+git clone https://github.com/FPJack/ZLInsetLabel.git
 cd ZLInsetLabel/Example
 pod install
 open ZLInsetLabel.xcworkspace
