@@ -30,7 +30,8 @@
     // 设置内边距
     ZLInsetLabel *label2 = [[ZLInsetLabel alloc] init];
     label2.text = @"内边距 (10, 20, 10, 20)";
-    label2.edgeInsets = UIEdgeInsetsMake(10, 20, 10, 20);
+    
+    label2.edgeInsets = UIEdgeInsetsMake(10, 50, 10, 20);
     label2.backgroundColor = [UIColor colorWithRed:0.9 green:1.0 blue:0.9 alpha:1.0];
     label2.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:label2];

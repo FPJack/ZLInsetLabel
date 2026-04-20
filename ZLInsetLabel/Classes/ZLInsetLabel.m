@@ -4,19 +4,19 @@
 
 - (void)setEdgeInsets:(UIEdgeInsets)edgeInsets {
     _insetTop = edgeInsets.top;
-    _insetLeft = edgeInsets.left;
+    _insetLeading = edgeInsets.left;
     _insetBottom = edgeInsets.bottom;
-    _insetRight = edgeInsets.right;
+    _insetTrailing = edgeInsets.right;
     [self invalidateIntrinsicContentSize];
     [self setNeedsDisplay];
 }
 
 - (UIEdgeInsets)edgeInsets {
-    return UIEdgeInsetsMake(_insetTop, _insetLeft, _insetBottom, _insetRight);
+    return UIEdgeInsetsMake(_insetTop, _insetLeading, _insetBottom, _insetTrailing);
 }
 - (ZLInsetLabel *(^)(CGFloat, CGFloat, CGFloat, CGFloat))inset {
-    return ^(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right) {
-        self.edgeInsets = UIEdgeInsetsMake(top, left, bottom, right);
+    return ^(CGFloat top, CGFloat leading, CGFloat bottom, CGFloat trailing) {
+        self.edgeInsets = UIEdgeInsetsMake(top, leading, bottom, trailing);
         return self;
     };
 }
@@ -27,8 +27,8 @@
     [self setNeedsDisplay];
 }
 
-- (void)setInsetLeft:(CGFloat)insetLeft {
-    _insetLeft = insetLeft;
+- (void)setInsetLeading:(CGFloat)insetLeading {
+    _insetLeading = insetLeading;
     [self invalidateIntrinsicContentSize];
     [self setNeedsDisplay];
 }
@@ -39,26 +39,33 @@
     [self setNeedsDisplay];
 }
 
-- (void)setInsetRight:(CGFloat)insetRight {
-    _insetRight = insetRight;
+- (void)setInsetTrailing:(CGFloat)insetTrailing {
+    _insetTrailing = insetTrailing;
     [self invalidateIntrinsicContentSize];
     [self setNeedsDisplay];
 }
 
+- (UIEdgeInsets)effectiveInsets {
+    BOOL isRTL = (self.effectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft);
+    CGFloat left  = isRTL ? _insetTrailing : _insetLeading;
+    CGFloat right = isRTL ? _insetLeading  : _insetTrailing;
+    return UIEdgeInsetsMake(_insetTop, left, _insetBottom, right);
+}
+
 - (void)drawTextInRect:(CGRect)rect {
-    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, self.edgeInsets)];
+    [super drawTextInRect:UIEdgeInsetsInsetRect(rect, [self effectiveInsets])];
 }
 
 - (CGSize)intrinsicContentSize {
     CGSize size = [super intrinsicContentSize];
-    size.width += _insetLeft + _insetRight;
+    size.width += _insetLeading + _insetTrailing;
     size.height += _insetTop + _insetBottom;
     return size;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize fitSize = [super sizeThatFits:CGSizeMake(size.width - _insetLeft - _insetRight, size.height - _insetTop - _insetBottom)];
-    fitSize.width += _insetLeft + _insetRight;
+    CGSize fitSize = [super sizeThatFits:CGSizeMake(size.width - _insetLeading - _insetTrailing, size.height - _insetTop - _insetBottom)];
+    fitSize.width += _insetLeading + _insetTrailing;
     fitSize.height += _insetTop + _insetBottom;
     return fitSize;
 }
