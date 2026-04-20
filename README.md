@@ -95,7 +95,7 @@ open ZLInsetLabel.xcworkspace
 
 ## 作者
 
-fanpeng, peng.fan@ukelink.com
+
 
 ## 许可证
 
