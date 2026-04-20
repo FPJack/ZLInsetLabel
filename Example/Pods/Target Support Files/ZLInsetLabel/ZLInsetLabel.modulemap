@@ -1,0 +1,6 @@
+framework module ZLInsetLabel {
+  umbrella header "ZLInsetLabel-umbrella.h"
+
+  export *
+  module * { export * }
+}

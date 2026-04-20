@@ -1,0 +1,6 @@
+framework module Pods_ZLInsetLabel_Example {
+  umbrella header "Pods-ZLInsetLabel_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

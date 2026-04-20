@@ -1,0 +1,27 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - ZLInsetLabel (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - ZLInsetLabel (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - FBSnapshotTestCase
+
+EXTERNAL SOURCES:
+  ZLInsetLabel:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  ZLInsetLabel: b22c43c77eec947f395d98a0ff038ad108ca8197
+
+PODFILE CHECKSUM: 7fbbab2eaea0982328bf01eb53800793f8917d6f
+
+COCOAPODS: 1.16.2
